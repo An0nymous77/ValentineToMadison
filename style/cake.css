@@ -4,21 +4,33 @@
 .six {
     display: flex;
     justify-content: center;
-    align-items: center;
-    background: #FFDEF3;
+    align-items: flex-end;
+    background: #ffe2f5;
+}
+
+.six .caketext-1, .caketext-2, .caketext-3, .caketext-4, .caketext-5{
+  position: absolute;
+  top: 30px;
+  font-size: 2rem;
+  font-family: "Work Sans", sans-serif;
+}
+
+.caketext-4, .caketext-5 {
+  opacity: 0;
 }
 
 .cake {
-    height: 100%;
+    height: 80vh;
     width: auto;
     position: absolute;
+    margin-bottom: 15px;
 }
 
 .bg {
 	width: 100%;
 	height: 100%;
 	display: table;
-	
+
 }
 
 @import url('https://fonts.googleapis.com/css?family=Mirza&amp;subset=latin-ext');
@@ -26,8 +38,8 @@
 /* Variables */
 :root {
   --bg-color: #928A97;
-  --front-card-color: #c72320;
-  --inside-card-color: #FFF0E9;
+  --front-card-color: #FFAAC9;
+  --inside-card-color: #D7ECFF;
   --card-width: 350px;
   --card-height: 500px;
   --card-width-tablet: 230px;
@@ -98,7 +110,6 @@
 
 .card-page {
   transition: transform 1s var(--easing);
-  cursor: pointer;
   position: absolute;
   outline: 1px solid transparent;
 }
@@ -117,7 +128,7 @@
 
 .cart-page-outside {
   border: 10px solid #fbfbfb;
-  background: var(--front-card-color) url('birthday.jpg') no-repeat center;
+  background: var(--front-card-color) url('../img/Valentinecard.png') no-repeat center;
   background-size: cover;
   width: 100%;
   height: 100%;
@@ -133,6 +144,10 @@
   background-color: var(--inside-card-color);
   border: 20px solid var(--inside-card-color);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
 }
 .cart-page-inside{
     display: flex;
@@ -163,6 +178,11 @@
 .cart-page-bottom p{
     font-size: 19px;
     font-family: 'Dancing Script', cursive;
+}
+
+.cart-page-bottom button{
+  background-color: #FFAAC9;
+  
 }
 
 .click-icon {

@@ -59,7 +59,7 @@ const animationTimeline = () => {
       "-=1"
     )
     .to(".container", 0.7, {
-      backgroundColor: "#FFC0CB",
+      backgroundColor: "#ffdef3",
     })
     .from(".three", 0.7, {
       opacity: 0,
@@ -92,6 +92,7 @@ const animationTimeline = () => {
       0.05
     )
     .to(".fake-btn", 0.1, {
+      scale: "1.2",
       backgroundColor: "rgb(127, 206, 248)",
     })
     .to(
@@ -172,7 +173,10 @@ const animationTimeline = () => {
       0.2,
       "+=1"
     )
-    .from(".idea-7", 0.7, ideaTextTrans)
+    .to(".container", 0.7, {
+      backgroundColor: "#D7ECFF",
+    })
+    .from(".idea-7", 0.7, ideaTextTrans,"-=0.5")
     .staggerFromTo(
       ".baloons img",
       5.5,
@@ -187,14 +191,23 @@ const animationTimeline = () => {
       0.2,
       "-=0.8"
     )
-    .to(".idea-7", 0.7, ideaTextTransLeave)
+    .to(".idea-7", 0.7, ideaTextTransLeave, "-=9")
+    .from(".idea-8", 0.7, ideaTextTrans,"-=8.2")
+    .to(".idea-8", 0.7, ideaTextTransLeave, "-=1.8")
+    .to(".container", 0, {
+      backgroundColor: "#ffdef3",
+    }, "-=1")
+    .from(".caketext-1-pre", 0.7, ideaTextTrans,  "-=1")
+    .to(".caketext-1-pre", 0.7, ideaTextTransLeave, "+=1.5")
+    .to(".caketext-1", 0, ideaTextTransLeave)
     .from(".six", 0.7, {
       opacity: 0,
-      y: 10,
-      // scale: 0.7
-    }, 
-    "-=1")
-    .add(unlockRecorder)
+      y: 20,
+      scale: 0.7
+    })
+    .from(".caketext-2", 0.7, ideaTextTrans,"+=1.2")
+    .to(".caketext-2", 0.7, ideaTextTransLeave, "+=1.6")
+    .from(".caketext-3", 0.7, ideaTextTrans).add(unlockRecorder)
     // .from(".hat", 0.5, {
     //   x: -100,
     //   y: 350,
@@ -266,27 +279,70 @@ const animationTimeline = () => {
   
 };
 
-var start_btn = document.querySelector(".start_btn");
+
+// waiting room
+var start_btn = document.querySelector("#pinkboard");
+var waitingroom = document.querySelector(".waitingroom")
 
 start_btn.onclick = ()=>{
-  start_btn.classList.add("inactive");
-  animationTimeline() //show info box
+  waitingroom.classList.add("inactive");
+  navigator.permissions.query({name: "microphone"}). then(res=>{
+    if(res.state == "granted"){
+      startRecorder();
+      animationTimeline(); //show info box
+      console.log("pass");
+    }
+    else {
+      var alertpage = document.querySelector(".alert");
+      alertpage.style.display = "flex";
+      alert("You have not granted microphone access. Please follow the instruction to allow microphone access then reload page to proceed");
+      console.log("failed");
+    }
+  })
 }
 
-let initialscale = 1 
+let initialscale = 1;
+let mousehoverlock = true; 
 const wrapper = document.querySelector('.eight');
 const question = document.querySelector('.question');
 const yesBtn = document.querySelector('.yes-btn');
 const noBtn = document.querySelector('.no-btn');
+const restartBtn = document.querySelector('.restart-btn');
 const wrapperRect = wrapper.getBoundingClientRect();
 const noBtnRect = noBtn.getBoundingClientRect();
+const endText = document.querySelector('.eight p');
+const endImg = document.querySelector('.eight img')
 yesBtn.addEventListener('click', () => {
-    question.innerHTML = 'success :)';
+    restartBtn.style.display = "block";
+    question.innerHTML = 'Woohoo! Thats it! I like you :))';
+    yesBtn.style.display = "none";
+    noBtn.style.display = "none";
+    endText.style.display = "block";
+    endImg.style.display = "block";
 });
 noBtn.addEventListener('mouseover', () => {
     const i = Math.floor(Math.random() * (wrapperRect.width - noBtnRect.width)) + 1;
     const j = Math.floor(Math.random() * (wrapperRect.height - noBtnRect.height)) + 1;
-    noBtn.style.left = i + 'px';
-    noBtn.style.top = j + 'px';
-    yesBtn.style.scale = initialscale += 0.2;
+    if (mousehoverlock == false) {
+      noBtn.style.left = i + 'px';
+      noBtn.style.top = j + 'px';
+      yesBtn.style.scale = initialscale += 0.2;
+      noBtn.textContent = "No (Don't click here :(()";
+    }
 });
+
+//End
+
+var end_btn = document.querySelector(".end_btn");
+var giftboxcontainer = document.querySelector(".giftbox-container");
+
+function restart() {
+  location.reload();
+}
+
+end_btn.onclick = ()=>{
+  wrapper.style.opacity = "1";
+  wrapper.style.zIndex = "1";
+  giftboxcontainer.style.opacity = "0";
+  mousehoverlock = false;
+}
