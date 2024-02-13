@@ -398,6 +398,7 @@ body {
 .giftcontainer{
   position: relative;
   display: none;
+  z-index: 2;
 }
 .giftcontainer.right{
   margin-left: 200px;

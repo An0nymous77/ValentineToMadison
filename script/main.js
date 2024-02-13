@@ -346,3 +346,4 @@ end_btn.onclick = ()=>{
   giftboxcontainer.style.opacity = "0";
   mousehoverlock = false;
 }
+
