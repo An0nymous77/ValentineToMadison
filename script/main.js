@@ -304,6 +304,7 @@ start_btn.onclick = ()=>{
 let initialscale = 1;
 let mousehoverlock = true; 
 const wrapper = document.querySelector('.eight');
+const counter = document.querySelector(".counter");
 const question = document.querySelector('.question');
 const yesBtn = document.querySelector('.yes-btn');
 const noBtn = document.querySelector('.no-btn');
@@ -345,5 +346,6 @@ end_btn.onclick = ()=>{
   wrapper.style.zIndex = "1";
   giftboxcontainer.style.opacity = "0";
   mousehoverlock = false;
+  counter.style.opacity = "1";
 }
 

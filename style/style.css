@@ -596,8 +596,10 @@ body {
   font-size: 20px;
 }
 
-.eight a {
+.counter {
   position: absolute;
   bottom: 20px;
   left: 20px;
+  opacity: 0;
+  z-index: 5;
 }
