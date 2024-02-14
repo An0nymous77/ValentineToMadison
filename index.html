@@ -538,6 +538,21 @@
         <p class="caketext-3">So please blow out the candle like an actual cake <br>(blow strongly into the screen)</p>
         <p class="caketext-4">Stronger!!!</p>
         <p class="caketext-5">Woohoo!!! :))</p>
+        <script>
+          function ontop(cake){
+              var elements = document.getElementsByClassName("cake");
+              var highest_index = 0;
+
+              for (var i = 0; i < elements.length - 1; i++) 
+              {
+                  if (parseInt(elements[i].style.zIndex) > highest_index) 
+                  {        
+                      highest_index = parseInt(elements[i].style.zIndex);
+                  }
+              }
+              cake.style.zIndex = highest_index + 1;
+          }
+        </script>
         <video id = "video1" autoplay loop muted plays-inline class="cake" onplay="ontop(this)">
             <source src="cakevideo/Madcake1.mp4" type="video/mp4">
         </video>

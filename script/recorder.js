@@ -106,21 +106,6 @@ function playVideo3() {
     video3.play();
 }
 
-function ontop(cake){
-    var elements = document.getElementsByClassName("cake");
-    var highest_index = 0;
-
-    for (var i = 0; i < elements.length - 1; i++) 
-    {
-        if (parseInt(elements[i].style.zIndex) > highest_index) 
-        {        
-            highest_index = parseInt(elements[i].style.zIndex);
-        }
-    }
-
-    cake.style.zIndex = highest_index + 1;
-}
-
 function stopVoice() {
     localStream.getTracks().forEach( (track) => {
         track.stop();

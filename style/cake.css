@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
-
+@import url('https://fonts.googleapis.com/css?family=Mirza&amp;subset=latin-ext');
 
 .six {
     display: flex;
@@ -32,8 +32,6 @@
 	display: table;
 
 }
-
-@import url('https://fonts.googleapis.com/css?family=Mirza&amp;subset=latin-ext');
 
 /* Variables */
 :root {
